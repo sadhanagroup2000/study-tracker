@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Study Navigator</title>
+    <style>
+        :root {
+            --primary: #8914cc; --bg: #ffffff; --card: #ffffff; --text: #1e293b; --accent: #10b981;
+        }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
+        .container { max-width: 500px; width: 100%; background: var(--card); padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h2 { font-size: 1.5rem; text-align: center; color: var(--primary); margin-bottom: 5px; }
+        p.tagline { text-align: center; font-size: 1rem; color: #031741; margin-bottom: 25px; }
+        
+        .section-title { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #151B54; margin: 20px 0 10px 0; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+        input, select, textarea { width: 100%; padding: 5px; border: 1.5px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; transition: all 0.2s; box-sizing: border-box; }
+        input:focus { outline: none; border-color: var(--primary); background: #fcf3ff; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        
+        /* Focus Rating Buttons */
+        .focus-btns { display: flex; gap: 8px; justify-content: space-between; }
+        .f-btn { flex: 1; padding: 10px; border: 1.5px solid #e2e8f0; border-radius: 10px; cursor: pointer; text-align: center; transition: 0.3s; background: white; }
+        .f-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .btn-submit { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 14px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 20px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+        .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        .card {
+            background-color: #ffffff;
+            height: 10%;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 2%;
+            font-family: sans-serif;
+        }
+
+        .card-image {
+            width: 100%; 
+            height: auto;
+            display: block;
+        }
+
+        .card-content {
+            padding: 0px;
+        }
+        h2.white-outline {
+            font-size: xx-large ;
+            color: rgb(29, 2, 90);
+            text-shadow:
+                -1px -1px 0 #FFF,
+                1px -1px 0 #FFF,
+                -1px  1px 0 #FFF,
+                1px  1px 0 #FFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <hr width="100%;" color="purple" size="5">   
+    <div class="card"><img src="Sadhana_purple_logo.png" alt="Placeholder image" class="card-image"></div>
+    <h2 class="white-outline">DAILY STUDENT PROGRESS</h2>
+    <p class="tagline">Strategic Daily Management System</p>
+
+    <form id="studyForm">
+        <div class="form-group" style="background:#dba9f8; padding:10px; border-radius:10px">
+            <div class="section-title">Step 1: Identity</div>
+                <div class="form-group"><label>Full Name</label><input type="text" id="name" placeholder="Name Surname - In Capital" required></div>
+                <div class="grid">
+                    <div class="form-group"><label>Standard</label>
+                        <select id="std"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11 Commerce</option><option>12 Commerce</option><option>11 Arts</option><option>12 Arts</option></select>
+                    </div>
+                    <div class="form-group"><label>Medium</label>
+                        <select id="medium"><option>English</option><option>Gujarati</option></select>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="form-group"><label>Date</label><input type="date" id="date"></div>
+                    <div class="form-group"><label>Wake-up Time</label><input type="time" id="wakeup"></div>
+                </div>
+        </div>
+
+        <div class="form-group" style="background:#dba9f8; padding:10px; border-radius:10px">
+            <div class="section-title">Step 2: Reading Habits</div>
+                <div class="form-group"><label>Subject-01</label>
+                    <select id="r_subject1"><option>English</option><option>Maths</option><option>Science</option><option>S.S.</option><option>Gujarati</option><option>Hindi</option><option>Sanskrit</option><option>Account</option><option>Statistics</option><option>Economics</option><option>B.A.</option><option>Philosophy</option><option>Psychology</option><option>Computer</option><option>P.E.</option></select>
+                </div>
+                <div class="form-group"><label>Topics Covered</label><textarea id="r_details1" placeholder="Chapter, Pg no, (MCQS, FB, TF, SQ, LQ, SN)" rows="2"></textarea></div>
+                <div class="form-group"><label>If Subject-02</label>
+                    <select id="r_subject2"><option>English</option><option>Maths</option><option>Science</option><option>S.S.</option><option>Gujarati</option><option>Hindi</option><option>Sanskrit</option><option>Account</option><option>Statistics</option><option>Economics</option><option>B.A.</option><option>Philosophy</option><option>Psychology</option><option>Computer</option><option>P.E.</option></select>
+                </div>
+                <div class="form-group"><label>Topics Covered</label><textarea id="r_details2" placeholder="Chapter, Pg no, (MCQS, FB, TF, SQ, LQ, SN)" rows="2"></textarea></div>
+                <div class="form-group"><label>Reading Timing</label>
+                    <div class="grid">
+                        <div class="form-group"><label>From</label><input type="time" id="rfromtime"></div>
+                        <div class="form-group"><label>TO</label><input type="time" id="rtotime"></div>
+                    </div>
+                </div>
+        </div>    
+
+       <div class="form-group" style="background:#dba9f8; padding:10px; border-radius:10px">
+            <div class="section-title">Step 3: Writing Habits</div>
+            <div class="form-group"><label>Subject Selected</label><input type="text" id="w_subject"></div>
+            <div class="form-group"><label>Writing Timing</label>
+                <div class="grid">
+                    <div class="form-group"><label>From</label><input type="time" id="wfromtime"></div>
+                    <div class="form-group"><label>TO</label><input type="time" id="wtotime"></div>
+                </div>
+                <div class="form-group" style="display:flex; align-items:center; gap:10px;">
+                    <input type="checkbox" id="sums" style="width:auto;">
+                    <label style="margin-bottom:0;">Practiced sums 3 times?</label>
+                    <div class="form-group"><label>Chapter</label><input type="number" id="sum_ch"></div>
+                    <div class="form-group"><label>Ex No</label><input type="number" id="sum_ex"></div>
+                    <div class="form-group"><label>Total Sums</label><input type="number" id="sum_total"></div>
+                </div>
+            </div>     
+        </div>    
+
+        <div class="form-group" style="background:#dba9f8; padding:10px; border-radius:10px">
+            <div class="section-title">Step 4: Focus & Digital</div>
+            <div class="form-group"><label>Who Supervised You?</label>
+                <select id="supervisor"><option>None</option><option>Father</option><option>Mother</option><option>Brother</option><option>Sister</option><option>Grandpa</option><option>Grandma</option><option>Uncle</option><option>Aunt</option></select>
+            </div>
+            
+            <label>Goal Satisfaction for today's work</label>
+            <div class="focus-btns" id="focusGroup">
+                <div class="f-btn" onclick="setFocus(1)">Very Bad</div>
+                <div class="f-btn" onclick="setFocus(2)">Bad</div>
+                <div class="f-btn" onclick="setFocus(3)">Good</div>
+                <div class="f-btn active" onclick="setFocus(4)">Better</div>
+                <div class="f-btn" onclick="setFocus(5)">Best</div>
+            </div>
+
+            <div class="grid" style="margin-top:15px;">
+                <div class="form-group"><label>Edu Mobile (Mins)</label><input type="number" id="edu_mob"></div>
+                <div class="form-group"><label>Fun Mobile (Mins)</label><input type="number" id="fun_mob"></div>
+            </div>
+
+            <div class="form-group"><label>Parent's Phone Number</label><input type="tel" id="parent_phone" required></div>
+        </div>
+        
+        <div class="form-group" style="background:#dba9f8; padding:10px; border-radius:10px">
+            <div class="form-group"><label>My Current year Goal</label><input type="number" id="goal" placeholder="percentage" required></div>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Practice Makes Man Perfect - Good Night</button>
+    </form>
+</div>
+
+<script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbybwL2TeFWqVs9JE5e7KqmEreaNyHvFos1FMbpHfgi6cKtC57MozunWBw2UJAOodV-k/exec';
+    
+    let selectedFocus = 4; // Default to 'Better'
+    document.getElementById('date').valueAsDate = new Date();
+
+    function setFocus(val) {
+        selectedFocus = val;
+        document.querySelectorAll('.f-btn').forEach((b, i) => {
+            b.classList.toggle('active', i === val - 1);
+        });
+    }
+
+    document.getElementById('studyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerText = "Sending...";
+
+        const formData = {
+            name: document.getElementById('name').value,
+            std: document.getElementById('std').value,
+            medium: document.getElementById('medium').value,
+            date: document.getElementById('date').value,
+            wakeup: document.getElementById('wakeup').value,
+            r_subject1: document.getElementById('r_subject1').value,
+            r_details1: document.getElementById('r_details1').value,
+            r_subject2: document.getElementById('r_subject2').value,
+            r_details2: document.getElementById('r_details2').value,
+            rfromtime: document.getElementById('rfromtime').value,
+            rtotime: document.getElementById('rtotime').value,
+            w_subject: document.getElementById('w_subject').value,
+            wfromtime: document.getElementById('wfromtime').value,
+            wtotime: document.getElementById('wtotime').value,
+            sums: document.getElementById('sums').checked ? "Yes" : "No",
+            supervisor: document.getElementById('supervisor').value,
+            focus: selectedFocus,
+            edu_mob: document.getElementById('edu_mob').value,
+            fun_mob: document.getElementById('fun_mob').value,
+            parent_phone: document.getElementById('parent_phone').value,
+            goal: document.getElementById('goal').value 
+        };
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Use no-cors for simpler setup with Apps Script
+            body: JSON.stringify(formData)
+        })
+        .then(() => {
+            alert("Success! Your progress has been recorded.");
+            btn.disabled = false;
+            btn.innerText = "Practice Makes Man Perfect - Good Night";
+            document.getElementById('studyForm').reset();
+            document.getElementById('date').valueAsDate = new Date(); // Reset date
+        })
+        .catch(err => {
+            alert("Error: Data not sent.");
+            btn.disabled = false;
+            btn.innerText = "Try Again";
+        });
+    });
+</script>
+
+</body>
+</html>
