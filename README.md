@@ -1,1 +1,1 @@
-# study-tracker
+# daily-study-tracker
